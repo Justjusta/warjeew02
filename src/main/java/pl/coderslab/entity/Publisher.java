@@ -3,6 +3,7 @@ package pl.coderslab.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,9 +17,9 @@ public class Publisher {
 	private String firstName;
 	private String lastName;
 
-	@OneToMany( mappedBy="publisher")
+	@OneToMany(mappedBy = "publisher")
 	private List<Book> books;
-	
+
 	public List<Book> getBooks() {
 		return books;
 	}
@@ -49,6 +50,11 @@ public class Publisher {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	@Override
+	public String toString() {
+		return "Publisher [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
 	}
 
 }
