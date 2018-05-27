@@ -27,8 +27,8 @@ public class Book {
 		this.authors = authors;
 	}
 
-	@ManyToOne
-	Publisher publisher;
+    @ManyToOne
+    private Publisher publisher;
 	
 	public Publisher getPublisher() {
 		return publisher;

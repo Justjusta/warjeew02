@@ -16,7 +16,7 @@ public class Publisher {
 	private String firstName;
 	private String lastName;
 
-	@OneToMany
+	@OneToMany( mappedBy="publisher")
 	private List<Book> books;
 	
 	public List<Book> getBooks() {
