@@ -12,17 +12,19 @@
 	<a href="<c:url   value="/book/add"/>">Dodaj książekę</a>
 	<table>
 		<tr>
+			<th>Id</th>
 			<th>Title</th>
 			<th>Publisher</th>
 			<th>Akcje</th>
 		</tr>
 		<c:forEach items="${books}" var="boo">
 			<tr>
+				<td>${boo.id}</td>
 				<td>${boo.title}</td>
 				<td>${boo.publisher.firstName} ${boo.publisher.lastName}</td>
 	
-				<td><a href="<c:url   value="/book/edit/${boo.id}"/>">Edytuj</a>
-					<a href="<c:url   value="/book/delete/${boo.id}"/>">Usuń</a></td>
+				<td><a href="<c:url value="/book/edit/${boo.id}"/>">Edytuj</a>
+					<a href="<c:url value="/book/delete/${boo.id}"/>">Usuń</a></td>
 			</tr>
 		</c:forEach>
 	</table>

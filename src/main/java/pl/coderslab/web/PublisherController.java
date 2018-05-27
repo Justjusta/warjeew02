@@ -40,7 +40,6 @@ public class PublisherController {
 	@ModelAttribute("languages")
 	public List<String> checkOptions() {
 	    String a[] = new String[] {"java", "php", "ruby", "python"};
-	    System.out.println("JESTEM ZAWSZE WYWOLANA");
 	    return Arrays.asList(a);
 	}
 
@@ -48,8 +47,6 @@ public class PublisherController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public String processForm(Model model,@ModelAttribute Publisher publisher) {
-		String[] a = new String[] {"java", "php", "ruby", "python"};
-		model.addAttribute("languages",Arrays.asList(a) );
 	    publisherDao.save(publisher);
 	    return "publisher/success";
 	}

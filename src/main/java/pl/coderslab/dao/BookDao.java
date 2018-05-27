@@ -7,9 +7,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 
 import pl.coderslab.entity.Book;
+import pl.coderslab.entity.Publisher;
 
 @Component
 @Transactional
@@ -38,6 +40,12 @@ public class BookDao {
 	public List<Book> getAll() {
 		Query query = entityManager.createQuery("SELECT b FROM Book b");
 		return query.getResultList();
+	}
+	
+	public Book findByIdWithAuthors(long id) {
+		Book book = entityManager.find(Book.class, id);
+		Hibernate.initialize(book.getAuthors());
+		return book;
 	}
 
 }

@@ -24,6 +24,8 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import pl.coderslab.converter.AuthorConverter;
+
 
 
 @Configuration
@@ -67,4 +69,15 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         localeResolver.setDefaultLocale(new Locale("pl", "PL"));
         return localeResolver;
     }
+    
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(getStudentGroupConverter());
+    }
+    @Bean
+    public AuthorConverter getStudentGroupConverter() {
+        return new AuthorConverter();
+    }
+
+    
 }

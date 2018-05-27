@@ -17,10 +17,10 @@
 		<form:input path="isbn" />
 		<br />
 		Wybierz wydawcę
-		<form:select itemLabel="lastName" path="publisher" items="${publishers}" />
+		<form:select itemLabel="lastName" itemValue="id" path="publisher.id" items="${publishers}" />
 		<br/>
 		Wybierz autorów
-		<form:select itemLabel="lastName" path="authors" items="${authors}" multiple="true" />
+		<form:select itemLabel="lastName" itemValue="id" path="authors" items="${authors}" multiple="true" />
 		<br/>
 		
 		<input type="submit" value="Save">

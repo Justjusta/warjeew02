@@ -7,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.coderslab.dao.AuthorsDao;
 import pl.coderslab.dao.BookDao;
@@ -45,6 +48,12 @@ public class BookController {
 		model.addAttribute("book", new Book());
 		return "book/add";
 	}
+	
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String processForm(Model model,@ModelAttribute Book book) {
+		bookDao.saveBook(book);
+	    return "redirect:/book/list";
+	}
 
 	@RequestMapping("/list")
 	public String list(Model model) {
@@ -52,6 +61,12 @@ public class BookController {
 		Book book = bookDao.findById(1);
 		List<Author> authors = book.getAuthors();
 		return "book/list";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String update(@PathVariable long id, Model model) {
+		model.addAttribute("book", bookDao.findByIdWithAuthors(id));
+		return "book/add";
 	}
 
 }
